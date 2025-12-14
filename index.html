@@ -115,6 +115,116 @@
         max-width: 450px;
         padding: 40px 35px;
         overflow-y: hidden;
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Background image for security/intro section */
+      body:has(#securitySection.active) {
+        background: url("images/IMG_20251015_165654_237.jpg") no-repeat center
+          center fixed;
+        background-size: contain;
+        background-color: #ffe4ec;
+        min-height: 100vh;
+        width: 100%;
+      }
+
+      body:has(#securitySection.active)::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+      }
+
+      /* Image hearts for security section */
+      .image-heart {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        background: url("images/IMG_20251015_165654_237.jpg") center center;
+        background-size: cover;
+        clip-path: path(
+          "M25,45 C25,45 5,30 5,17 C5,8 12,2 20,2 C23,2 25,4 25,7 C25,4 27,2 30,2 C38,2 45,8 45,17 C45,30 25,45 25,45 Z"
+        );
+        animation: floatImageHeart 8s infinite ease-in-out;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.9;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+      }
+
+      @keyframes floatImageHeart {
+        0% {
+          transform: translateY(100vh) rotate(0deg) scale(0.5);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.9;
+        }
+        50% {
+          transform: translateY(50vh) rotate(15deg) scale(1);
+        }
+        90% {
+          opacity: 0.9;
+        }
+        100% {
+          transform: translateY(-100px) rotate(-15deg) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      #image-hearts-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      body:has(#securitySection.active) .container {
+        z-index: 10;
+      }
+
+      /* Style adjustments for transparent container */
+      .container:has(#securitySection.active) .security-screen h2 {
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#securitySection.active) .security-text {
+        color: rgba(255, 182, 193, 0.85);
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#securitySection.active) .question-container label {
+        color: rgba(255, 182, 193, 0.85);
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#securitySection.active) .question-container input {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid #ff69b4;
+        color: #ff1493;
+      }
+
+      .container:has(#securitySection.active)
+        .question-container
+        input::placeholder {
+        color: rgba(255, 20, 147, 0.8);
+      }
+
+      .container:has(#securitySection.active) .question-container input:focus {
+        border-color: #ff1493;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
       }
 
       /* Wide container for letter sections */
@@ -771,6 +881,9 @@
         .container:has(#securitySection.active) {
           max-width: 90%;
           padding: 30px 20px;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
         }
 
         .welcome h1 {
@@ -795,6 +908,9 @@
   <body>
     <!-- Floating Hearts Background -->
     <div id="hearts-container"></div>
+
+    <!-- Image Hearts for Security Section -->
+    <div id="image-hearts-container"></div>
 
     <!-- Main Container -->
     <div class="container">
@@ -823,7 +939,6 @@
       <!-- Security Question Section (First Screen) -->
       <div class="section active" id="securitySection">
         <div class="security-screen">
-          <h2>Welcome! 🔒</h2>
           <p class="security-text">
             Please answer these questions to continue...
           </p>
@@ -1111,6 +1226,39 @@
         }
       }
 
+      // Create image hearts for security section
+      function createImageHearts() {
+        const container = document.getElementById("image-hearts-container");
+        container.innerHTML = "";
+        const sizes = [40, 50, 60, 70, 80];
+
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement("div");
+          heart.className = "image-heart";
+          const size = sizes[Math.floor(Math.random() * sizes.length)];
+          heart.style.width = size + "px";
+          heart.style.height = size + "px";
+          heart.style.left = Math.random() * 100 + "%";
+          heart.style.animationDelay = Math.random() * 8 + "s";
+          heart.style.animationDuration = Math.random() * 5 + 6 + "s";
+          container.appendChild(heart);
+        }
+      }
+
+      // Show/hide image hearts based on section
+      function updateImageHearts() {
+        const securitySection = document.getElementById("securitySection");
+        const imageHeartsContainer = document.getElementById(
+          "image-hearts-container"
+        );
+        if (securitySection.classList.contains("active")) {
+          imageHeartsContainer.style.display = "block";
+          createImageHearts();
+        } else {
+          imageHeartsContainer.style.display = "none";
+        }
+      }
+
       // Create confetti
       function createConfetti() {
         const container = document.getElementById("confetti-container");
@@ -1316,6 +1464,9 @@
             .classList.add("active");
           // Keep monthsary music playing
         }
+
+        // Update image hearts visibility
+        updateImageHearts();
       }
 
       // Red Room Security Validation
@@ -1371,6 +1522,7 @@
       // Initialize on load
       window.addEventListener("load", () => {
         createHearts();
+        updateImageHearts();
       });
     </script>
   </body>

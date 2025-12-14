@@ -514,19 +514,118 @@
         text-align: center;
       }
 
+      /* Background image for welcome section */
+      body:has(#welcomeSection.active) {
+        background: url("images/IMG_20251015_165647_894 (1).jpg") no-repeat center center fixed;
+        background-size: contain;
+        background-color: #ffe4ec;
+        min-height: 100vh;
+        width: 100%;
+      }
+
+      body:has(#welcomeSection.active)::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+      }
+
+      body:has(#welcomeSection.active) .container {
+        z-index: 10;
+      }
+
+      /* Transparent container for welcome section */
+      .container:has(#welcomeSection.active) {
+        max-width: 450px;
+        padding: 40px 35px;
+        overflow-y: hidden;
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+
       .welcome h1 {
         font-family: "Dancing Script", cursive;
         font-size: 3em;
-        color: #ff6b9d;
+        color: #fff;
         margin-bottom: 30px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       }
 
       .welcome p {
         font-size: 1.2em;
-        color: #666;
+        color: rgba(255, 182, 193, 0.85);
         margin-bottom: 40px;
         font-style: italic;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Image hearts for welcome section */
+      .image-heart-welcome {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        background: url("images/IMG_20251015_165647_894 (1).jpg") center center;
+        background-size: cover;
+        clip-path: path(
+          "M25,45 C25,45 5,30 5,17 C5,8 12,2 20,2 C23,2 25,4 25,7 C25,4 27,2 30,2 C38,2 45,8 45,17 C45,30 25,45 25,45 Z"
+        );
+        animation: floatImageHeart 8s infinite ease-in-out;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.9;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
+      }
+
+      #image-hearts-welcome-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      /* Transparent buttons for welcome section */
+      .container:has(#welcomeSection.active) .btn-primary {
+        background: rgba(255, 107, 157, 0.3);
+        border: 2px solid #ff69b4;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#welcomeSection.active) .btn-primary:hover {
+        background: rgba(255, 107, 157, 0.5);
+        box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+      }
+
+      .container:has(#welcomeSection.active) .btn-secondary {
+        background: rgba(197, 108, 240, 0.3);
+        border: 2px solid #c56cf0;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#welcomeSection.active) .btn-secondary:hover {
+        background: rgba(197, 108, 240, 0.5);
+        box-shadow: 0 8px 20px rgba(197, 108, 240, 0.4);
+      }
+
+      .container:has(#welcomeSection.active) .btn-back {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#welcomeSection.active) .btn-back:hover {
+        background: rgba(255, 255, 255, 0.3);
       }
 
       /* Buttons */
@@ -912,6 +1011,9 @@
     <!-- Image Hearts for Security Section -->
     <div id="image-hearts-container"></div>
 
+    <!-- Image Hearts for Welcome Section -->
+    <div id="image-hearts-welcome-container"></div>
+
     <!-- Main Container -->
     <div class="container">
       <!-- Music Controls (Hidden in security and welcome screens) -->
@@ -971,8 +1073,6 @@
       <!-- Welcome Section -->
       <div class="section" id="welcomeSection">
         <div class="welcome">
-          <h1>For My Special Someone ❤️</h1>
-          <p>Choose which letter you'd like to read today</p>
           <div class="btn-group">
             <button class="btn-primary" onclick="showSection('monthsary')">
               💕 Monthsary Letter
@@ -1245,17 +1345,46 @@
         }
       }
 
+      // Create image hearts for welcome section
+      function createImageHeartsWelcome() {
+        const container = document.getElementById("image-hearts-welcome-container");
+        container.innerHTML = "";
+        const sizes = [40, 50, 60, 70, 80];
+
+        for (let i = 0; i < 20; i++) {
+          const heart = document.createElement("div");
+          heart.className = "image-heart-welcome";
+          const size = sizes[Math.floor(Math.random() * sizes.length)];
+          heart.style.width = size + "px";
+          heart.style.height = size + "px";
+          heart.style.left = Math.random() * 100 + "%";
+          heart.style.animationDelay = Math.random() * 8 + "s";
+          heart.style.animationDuration = Math.random() * 5 + 6 + "s";
+          container.appendChild(heart);
+        }
+      }
+
       // Show/hide image hearts based on section
       function updateImageHearts() {
         const securitySection = document.getElementById("securitySection");
-        const imageHeartsContainer = document.getElementById(
-          "image-hearts-container"
-        );
+        const welcomeSection = document.getElementById("welcomeSection");
+        const imageHeartsContainer = document.getElementById("image-hearts-container");
+        const imageHeartsWelcomeContainer = document.getElementById("image-hearts-welcome-container");
+        
+        // Security section hearts
         if (securitySection.classList.contains("active")) {
           imageHeartsContainer.style.display = "block";
           createImageHearts();
         } else {
           imageHeartsContainer.style.display = "none";
+        }
+        
+        // Welcome section hearts
+        if (welcomeSection.classList.contains("active")) {
+          imageHeartsWelcomeContainer.style.display = "block";
+          createImageHeartsWelcome();
+        } else {
+          imageHeartsWelcomeContainer.style.display = "none";
         }
       }
 

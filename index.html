@@ -117,6 +117,14 @@
         overflow-y: hidden;
       }
 
+      /* Wide container for letter sections */
+      .container:has(#monthsarySection.active),
+      .container:has(#birthdaySection.active) {
+        max-width: 95%;
+        width: 100%;
+        max-height: 90vh;
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -616,6 +624,9 @@
               🎂 Birthday Letter
             </button>
           </div>
+          <button class="btn-back" onclick="showSection('security')">
+            ← Back to Login
+          </button>
         </div>
       </div>
 

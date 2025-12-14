@@ -119,10 +119,24 @@
 
       /* Wide container for letter sections */
       .container:has(#monthsarySection.active),
-      .container:has(#birthdaySection.active) {
+      .container:has(#birthdaySection.active),
+      .container:has(#redroomSection.active) {
         max-width: 95%;
         width: 100%;
         max-height: 90vh;
+      }
+
+      /* Red Room Styling */
+      .red-room-header h2 {
+        color: #c0392b;
+      }
+
+      .container:has(#redroomSection.active) {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(255, 200, 200, 0.95)
+        );
       }
 
       @keyframes fadeIn {
@@ -667,8 +681,48 @@
           With All My Love ❤️
         </div>
 
+        <button class="btn-secondary" onclick="showSection('redroom')">
+          🔥 Enter the Red Room
+        </button>
         <button class="btn-back" onclick="showSection('welcome')">
           ← Back to Home
+        </button>
+      </div>
+
+      <!-- Red Room Section -->
+      <div class="section" id="redroomSection">
+        <div class="letter-header red-room-header">
+          <h2>Welcome to Our Red Room 🔥</h2>
+          <p class="special-info">A special place just for us...</p>
+        </div>
+
+        <div class="letter-content red-room-content">
+          <p>My Dearest Love,</p>
+          <p>
+            This is our secret space, where I can tell you all the things that
+            make my heart race when I think of you...
+          </p>
+          <p>
+            Every touch, every kiss, every moment with you sets my soul on fire.
+            You are my passion, my desire, and my everything.
+          </p>
+          <p>
+            I love the way you look at me, the way you hold me close, and the
+            way you make me feel like I'm the only person in the world.
+          </p>
+          <p>
+            You are absolutely irresistible, and I am completely, hopelessly,
+            and utterly in love with you. 🔥❤️
+          </p>
+        </div>
+
+        <div class="signature">
+          Yours Passionately,<br />
+          Forever & Always 🔥
+        </div>
+
+        <button class="btn-back" onclick="showSection('monthsary')">
+          ← Back to Monthsary
         </button>
       </div>
 
@@ -729,6 +783,10 @@
       />
     </audio>
 
+    <audio id="redroomMusic" loop>
+      <source src="audio/SoMo - Ride (Lyrics).mp3" type="audio/mpeg" />
+    </audio>
+
     <script>
       // ===== CONFIGURATION =====
       // IMPORTANT: Update these dates with your actual dates!
@@ -744,6 +802,7 @@
       let currentMusic = null;
       const monthsaryMusic = document.getElementById("monthsaryMusic");
       const birthdayMusic = document.getElementById("birthdayMusic");
+      const redroomMusic = document.getElementById("redroomMusic");
       const musicControls = document.getElementById("musicControls");
       const playPauseBtn = document.getElementById("playPauseBtn");
       const volumeSlider = document.getElementById("volumeSlider");
@@ -752,6 +811,7 @@
       // Set initial volume
       monthsaryMusic.volume = 0.7;
       birthdayMusic.volume = 0.7;
+      redroomMusic.volume = 0.7;
 
       // Create floating hearts
       function createHearts() {
@@ -869,6 +929,8 @@
         monthsaryMusic.currentTime = 0;
         birthdayMusic.pause();
         birthdayMusic.currentTime = 0;
+        redroomMusic.pause();
+        redroomMusic.currentTime = 0;
         currentMusic = null;
         playPauseBtn.textContent = "▶️";
         musicControls.classList.remove("show");
@@ -908,9 +970,10 @@
         if (currentMusic) {
           currentMusic.volume = volume;
         }
-        // Update both music elements
+        // Update all music elements
         monthsaryMusic.volume = volume;
         birthdayMusic.volume = volume;
+        redroomMusic.volume = volume;
         volumeValue.textContent = e.target.value + "%";
       });
 
@@ -959,6 +1022,9 @@
           updateBirthdayInfo();
           createConfetti();
           playMusic(birthdayMusic);
+        } else if (section === "redroom") {
+          document.getElementById("redroomSection").classList.add("active");
+          playMusic(redroomMusic);
         }
       }
 

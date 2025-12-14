@@ -236,6 +236,23 @@
         max-height: 90vh;
       }
 
+      /* Monthsary container - wide but with space for side images */
+      .container:has(#monthsarySection.active) {
+        max-width: calc(100% - 340px);
+        width: calc(100% - 340px);
+        margin-left: 170px;
+        margin-right: 170px;
+      }
+
+      @media (max-width: 900px) {
+        .container:has(#monthsarySection.active) {
+          max-width: 95%;
+          width: 95%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
       /* Red Room Styling */
       .red-room-header h2 {
         color: #ff4757;
@@ -477,6 +494,92 @@
         }
       }
 
+      /* Monthsary Letter Side Images */
+      .monthsary-side-images {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 10px;
+        z-index: 50;
+        pointer-events: none;
+      }
+
+      /* Only show side images when Monthsary section is active */
+      #monthsarySection.active ~ .monthsary-side-images,
+      body:has(#monthsarySection.active) .monthsary-side-images {
+        display: flex;
+      }
+
+      .monthsary-side-images.left {
+        left: 0;
+      }
+
+      .monthsary-side-images.right {
+        right: 0;
+      }
+
+      .monthsary-side-container {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .monthsary-images-scroll {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      .monthsary-images-scroll.up {
+        animation-name: monthsaryScrollUp;
+        animation-duration: 12s;
+      }
+
+      .monthsary-images-scroll.down {
+        animation-name: monthsaryScrollDown;
+        animation-duration: 12s;
+      }
+
+      @keyframes monthsaryScrollUp {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-50%);
+        }
+      }
+
+      @keyframes monthsaryScrollDown {
+        0% {
+          transform: translateY(-50%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .monthsary-images-scroll img {
+        width: 130px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 2px solid rgba(255, 107, 157, 0.6);
+        box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 900px) {
+        .monthsary-side-images {
+          display: none !important;
+        }
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -673,6 +776,47 @@
         color: #666;
         margin-top: 30px;
         font-size: 1em;
+      }
+
+      .btn-redroom {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        color: white;
+        font-family: "Playfair Display", serif;
+        font-size: 1.2em;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        font-weight: 600;
+      }
+
+      .btn-redroom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(220, 53, 69, 0.5);
+        background: linear-gradient(135deg, #c82333, #a71d2a);
+      }
+
+      .btn-pink {
+        background: linear-gradient(135deg, #ff69b4, #ff85c1);
+        color: white;
+        font-family: "Playfair Display", serif;
+        font-size: 1em;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        font-weight: 600;
+        margin-top: 30px;
+      }
+
+      .btn-pink:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+        background: linear-gradient(135deg, #ff85c1, #ff69b4);
       }
 
       .btn-back:hover {
@@ -1090,8 +1234,42 @@
 
       <!-- Monthsary Section -->
       <div class="section" id="monthsarySection">
+        <!-- Left Side Images (scrolling up) -->
+        <div class="monthsary-side-images left">
+          <div class="monthsary-side-container">
+            <div class="monthsary-images-scroll up">
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <!-- Duplicate for seamless loop -->
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Images (scrolling down) -->
+        <div class="monthsary-side-images right">
+          <div class="monthsary-side-container">
+            <div class="monthsary-images-scroll down">
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <!-- Duplicate for seamless loop -->
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+              <img src="images/1000037616.jpg" alt="Our moment" />
+              <img src="images/1000037615.jpg" alt="Our moment" />
+            </div>
+          </div>
+        </div>
+
         <div class="letter-header">
-          <h2>Happy Monthsary, My Love! 💕</h2>
+          <h2>Happy 5th Monthsary, My Love! 💕</h2>
           <div class="date-info" id="currentDate"></div>
           <div class="special-info" id="monthsInfo"></div>
         </div>
@@ -1125,10 +1303,10 @@
           With All My Love ❤️
         </div>
 
-        <button class="btn-secondary" onclick="showSection('redroomSecurity')">
+        <button class="btn-redroom" onclick="showSection('redroomSecurity')">
           🔥 Enter the Red Room
         </button>
-        <button class="btn-back" onclick="showSection('welcome')">
+        <button class="btn-pink" onclick="showSection('welcome')">
           ← Back to Home
         </button>
       </div>
@@ -1632,15 +1810,10 @@
 
       // Update monthsary information
       function updateMonthsaryInfo() {
-        const today = new Date();
-        const months = calculateMonths();
-
-        document.getElementById("currentDate").textContent = formatDate(today);
-        document.getElementById(
-          "monthsInfo"
-        ).textContent = `🎉 ${months} Month${
-          months !== 1 ? "s" : ""
-        } Together! 🎉`;
+        document.getElementById("currentDate").textContent =
+          "December 15, 2025";
+        document.getElementById("monthsInfo").textContent =
+          "🎉 5 Months Together! 🎉";
       }
 
       // Update birthday information

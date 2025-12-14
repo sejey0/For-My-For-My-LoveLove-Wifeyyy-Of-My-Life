@@ -128,15 +128,243 @@
 
       /* Red Room Styling */
       .red-room-header h2 {
-        color: #c0392b;
+        color: #ff4757;
+        text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+      }
+
+      .red-room-header .special-info {
+        color: #ffcccc;
       }
 
       .container:has(#redroomSection.active) {
         background: linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.95),
-          rgba(255, 200, 200, 0.95)
+          rgba(40, 0, 0, 0.98),
+          rgba(80, 0, 0, 0.98),
+          rgba(60, 0, 0, 0.98)
         );
+        box-shadow: 0 0 60px rgba(255, 0, 0, 0.3),
+          inset 0 0 100px rgba(255, 0, 0, 0.1);
+      }
+
+      .container:has(#redroomSection.active) .letter-content {
+        color: #ffdddd;
+      }
+
+      .container:has(#redroomSection.active) .signature {
+        color: #ff6b6b;
+      }
+
+      /* Red Room Image Gallery */
+      .red-room-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin: 30px 0;
+      }
+
+      .red-room-gallery img {
+        width: 280px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 3px solid rgba(255, 71, 87, 0.6);
+        box-shadow: 0 5px 25px rgba(255, 0, 0, 0.4);
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .red-room-gallery img:hover {
+        transform: scale(1.05);
+        border-color: #ff4757;
+        box-shadow: 0 10px 40px rgba(255, 0, 0, 0.6);
+      }
+
+      /* Red Room ambient glow animation */
+      @keyframes redGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 60px rgba(255, 0, 0, 0.3),
+            inset 0 0 100px rgba(255, 0, 0, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 80px rgba(255, 0, 0, 0.5),
+            inset 0 0 120px rgba(255, 0, 0, 0.15);
+        }
+      }
+
+      .container:has(#redroomSection.active) {
+        animation: redGlow 3s ease-in-out infinite;
+      }
+
+      .container:has(#redroomSection.active) .btn-back {
+        background: linear-gradient(135deg, #8b0000, #b22222);
+        color: white;
+      }
+
+      .container:has(#redroomSection.active) .btn-back:hover {
+        background: linear-gradient(135deg, #a00000, #cc2222);
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+      }
+
+      /* Red Room Security Styling */
+      .container:has(#redroomSecuritySection.active) {
+        max-width: 450px;
+        padding: 40px 35px;
+        overflow-y: hidden;
+        background: linear-gradient(
+          135deg,
+          rgba(40, 0, 0, 0.98),
+          rgba(80, 0, 0, 0.98)
+        );
+        box-shadow: 0 0 60px rgba(255, 0, 0, 0.3);
+      }
+
+      .redroom-security-screen {
+        text-align: center;
+      }
+
+      .redroom-security-screen h2 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.2em;
+        color: #ff4757;
+        margin-bottom: 15px;
+        text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+      }
+
+      .redroom-security-screen .security-text {
+        color: #ffcccc;
+      }
+
+      .redroom-security-screen .question-container label {
+        color: #ffdddd;
+      }
+
+      .redroom-security-screen .question-container input {
+        border: 2px solid rgba(255, 71, 87, 0.5);
+        background: rgba(60, 0, 0, 0.5);
+        color: #ffdddd;
+      }
+
+      .redroom-security-screen .question-container input:focus {
+        border-color: #ff4757;
+        background: rgba(80, 0, 0, 0.7);
+        box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+      }
+
+      .redroom-security-screen .btn-primary {
+        background: linear-gradient(135deg, #8b0000, #b22222);
+      }
+
+      .redroom-security-screen .btn-primary:hover {
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+      }
+
+      .redroom-security-screen .btn-back {
+        background: linear-gradient(135deg, #4a0000, #6a0000);
+        color: #ffcccc;
+      }
+
+      .redroom-security-screen .error-message {
+        color: #ff6b6b;
+      }
+
+      /* Red Room Layout with Side Images */
+      #redroomSection.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .red-room-side-images {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 10px;
+        z-index: 50;
+        pointer-events: none;
+      }
+
+      /* Only show side images when Red Room is active */
+      #redroomSection.active .red-room-side-images {
+        display: flex;
+      }
+
+      .red-room-side-images.left {
+        left: 0;
+      }
+
+      .red-room-side-images.right {
+        right: 0;
+      }
+
+      .side-image-container {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .side-images-scroll {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      .side-images-scroll.up {
+        animation-name: scrollUp;
+        animation-duration: 15s;
+      }
+
+      .side-images-scroll.down {
+        animation-name: scrollDown;
+        animation-duration: 15s;
+      }
+
+      @keyframes scrollUp {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-50%);
+        }
+      }
+
+      @keyframes scrollDown {
+        0% {
+          transform: translateY(-50%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .side-images-scroll img {
+        width: 130px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 2px solid rgba(255, 71, 87, 0.6);
+        box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+        flex-shrink: 0;
+      }
+
+      .red-room-main-content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      @media (max-width: 900px) {
+        .red-room-side-images {
+          display: none;
+        }
       }
 
       @keyframes fadeIn {
@@ -681,7 +909,7 @@
           With All My Love ❤️
         </div>
 
-        <button class="btn-secondary" onclick="showSection('redroom')">
+        <button class="btn-secondary" onclick="showSection('redroomSecurity')">
           🔥 Enter the Red Room
         </button>
         <button class="btn-back" onclick="showSection('welcome')">
@@ -689,41 +917,98 @@
         </button>
       </div>
 
+      <!-- Red Room Security Section -->
+      <div class="section" id="redroomSecuritySection">
+        <div class="redroom-security-screen">
+          <h2>🔒 Secret Access 🔥</h2>
+          <p class="security-text">Only you know the answer...</p>
+
+          <div class="question-container">
+            <label for="redroomQuestion">When is our monthsary?</label>
+            <input type="date" id="redroomQuestion" class="date-input" />
+          </div>
+
+          <div class="error-message" id="redroomErrorMessage"></div>
+
+          <button class="btn-primary" onclick="validateRedroomAnswer()">
+            ✓ Enter
+          </button>
+
+          <button class="btn-back" onclick="showSection('monthsary')">
+            ← Back to Monthsary
+          </button>
+        </div>
+      </div>
+
       <!-- Red Room Section -->
       <div class="section" id="redroomSection">
-        <div class="letter-header red-room-header">
-          <h2>Welcome to Our Red Room 🔥</h2>
-          <p class="special-info">A special place just for us...</p>
+        <!-- Left Side Images (scrolling up) -->
+        <div class="red-room-side-images left">
+          <div class="side-image-container">
+            <div class="side-images-scroll up">
+              <img src="images/1000037617.jpg" alt="Our moment" />
+              <img src="images/1000037619.jpg" alt="Our moment" />
+              <img src="images/1000037620.jpg" alt="Our moment" />
+              <!-- Duplicate for seamless loop -->
+              <img src="images/1000037617.jpg" alt="Our moment" />
+              <img src="images/1000037619.jpg" alt="Our moment" />
+              <img src="images/1000037620.jpg" alt="Our moment" />
+            </div>
+          </div>
         </div>
 
-        <div class="letter-content red-room-content">
-          <p>My Dearest Love,</p>
-          <p>
-            This is our secret space, where I can tell you all the things that
-            make my heart race when I think of you...
-          </p>
-          <p>
-            Every touch, every kiss, every moment with you sets my soul on fire.
-            You are my passion, my desire, and my everything.
-          </p>
-          <p>
-            I love the way you look at me, the way you hold me close, and the
-            way you make me feel like I'm the only person in the world.
-          </p>
-          <p>
-            You are absolutely irresistible, and I am completely, hopelessly,
-            and utterly in love with you. 🔥❤️
-          </p>
+        <!-- Right Side Images (scrolling down) -->
+        <div class="red-room-side-images right">
+          <div class="side-image-container">
+            <div class="side-images-scroll down">
+              <img src="images/1000037620.jpg" alt="Our moment" />
+              <img src="images/1000037619.jpg" alt="Our moment" />
+              <img src="images/1000037617.jpg" alt="Our moment" />
+              <!-- Duplicate for seamless loop -->
+              <img src="images/1000037620.jpg" alt="Our moment" />
+              <img src="images/1000037619.jpg" alt="Our moment" />
+              <img src="images/1000037617.jpg" alt="Our moment" />
+            </div>
+          </div>
         </div>
 
-        <div class="signature">
-          Yours Passionately,<br />
-          Forever & Always 🔥
-        </div>
+        <!-- Main Content -->
+        <div class="red-room-main-content">
+          <div class="letter-header red-room-header">
+            <h2>Welcome to Our Red Room 🔥</h2>
+            <p class="special-info">A special place just for us...</p>
+          </div>
 
-        <button class="btn-back" onclick="showSection('monthsary')">
-          ← Back to Monthsary
-        </button>
+          <div class="letter-content red-room-content">
+            <p>My Dearest Love,</p>
+            <p>
+              This is our secret space, where I can tell you all the things that
+              make my heart race when I think of you...
+            </p>
+            <p>
+              Every touch, every kiss, every moment with you sets my soul on
+              fire. You are my passion, my desire, and my everything.
+            </p>
+            <p>
+              I love the way you look at me, the way you hold me close, and the
+              way you make me feel like I'm the only person in the world.
+            </p>
+            <p>
+              You are absolutely irresistible, and I am completely, hopelessly,
+              and utterly in love with you. 🔥❤️
+            </p>
+          </div>
+
+          <div class="signature">
+            Yours Passionately,<br />
+            Forever & Always 🔥
+          </div>
+
+          <button class="btn-back" onclick="showSection('monthsary')">
+            ← Back to Monthsary
+          </button>
+        </div>
+        <!-- End red-room-main-content -->
       </div>
 
       <!-- Birthday Section -->
@@ -1025,6 +1310,36 @@
         } else if (section === "redroom") {
           document.getElementById("redroomSection").classList.add("active");
           playMusic(redroomMusic);
+        } else if (section === "redroomSecurity") {
+          document
+            .getElementById("redroomSecuritySection")
+            .classList.add("active");
+          // Keep monthsary music playing
+        }
+      }
+
+      // Red Room Security Validation
+      const REDROOM_MONTHSARY = "2025-07-15";
+
+      function validateRedroomAnswer() {
+        const answer = document.getElementById("redroomQuestion").value;
+        const errorMsg = document.getElementById("redroomErrorMessage");
+
+        if (!answer) {
+          errorMsg.textContent = "⚠️ Please select a date!";
+          errorMsg.classList.add("shake");
+          setTimeout(() => errorMsg.classList.remove("shake"), 500);
+          return;
+        }
+
+        if (answer === REDROOM_MONTHSARY) {
+          errorMsg.textContent = "";
+          showSection("redroom");
+        } else {
+          errorMsg.textContent = "❌ Wrong date. Try again, my love!";
+          errorMsg.classList.add("shake");
+          setTimeout(() => errorMsg.classList.remove("shake"), 500);
+          document.getElementById("redroomQuestion").value = "";
         }
       }
 

@@ -1007,56 +1007,383 @@
       /* Enhanced Letter Content Styling */
       .monthsary-letter-enhanced {
         position: relative;
-        padding: 30px;
+        padding: 40px 35px;
         background: linear-gradient(
           135deg,
-          rgba(255, 182, 193, 0.9),
-          rgba(255, 105, 180, 0.7)
+          rgba(255, 182, 193, 0.95),
+          rgba(255, 105, 180, 0.85),
+          rgba(255, 182, 193, 0.95)
         );
-        border-radius: 20px;
+        border-radius: 25px;
         margin: 20px 0;
-        border: 2px solid rgba(255, 105, 180, 0.5);
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        border: 3px solid rgba(255, 105, 180, 0.6);
+        box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4),
+          0 0 60px rgba(255, 182, 193, 0.3),
+          inset 0 0 30px rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+        animation: letterGlow 3s ease-in-out infinite alternate;
       }
 
+      @keyframes letterGlow {
+        0% {
+          box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4),
+            0 0 60px rgba(255, 182, 193, 0.3),
+            inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        100% {
+          box-shadow: 0 15px 50px rgba(255, 105, 180, 0.6),
+            0 0 80px rgba(255, 182, 193, 0.5),
+            inset 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      /* Corner Decorations */
       .monthsary-letter-enhanced::before {
         content: "💕";
         position: absolute;
         top: -15px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 2em;
-        background: white;
-        padding: 0 15px;
+        font-size: 2.5em;
+        background: linear-gradient(135deg, #fff, #ffe4ec);
+        padding: 5px 20px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        animation: floatHeart 2s ease-in-out infinite;
+      }
+
+      @keyframes floatHeart {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      .monthsary-letter-enhanced::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='50' font-size='20' fill='rgba(255,255,255,0.08)'%3E💕%3C/text%3E%3C/svg%3E");
+        background-size: 80px 80px;
+        pointer-events: none;
+        animation: patternFloat 20s linear infinite;
+      }
+
+      @keyframes patternFloat {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 80px 80px;
+        }
+      }
+
+      /* Floating Hearts Inside Letter */
+      .letter-floating-heart {
+        position: absolute;
+        font-size: 1.5em;
+        opacity: 0.15;
+        animation: letterHeartFloat 8s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes letterHeartFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.15;
+        }
+        50% {
+          transform: translateY(-20px) rotate(15deg);
+          opacity: 0.25;
+        }
       }
 
       .letter-paragraph {
         font-size: 1.15em;
         line-height: 2;
-        color: #555;
+        color: #4a3040;
         text-align: justify;
         margin-bottom: 20px;
         position: relative;
-        padding-left: 30px;
+        padding: 15px 15px 15px 35px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        border-left: 4px solid rgba(255, 105, 180, 0.6);
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .letter-paragraph:hover {
+        background: rgba(255, 255, 255, 0.5);
+        transform: translateX(5px);
+        box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+        border-left-color: #ff69b4;
       }
 
       .letter-paragraph::before {
         content: "♥";
         position: absolute;
-        left: 0;
-        color: rgba(255, 107, 157, 0.5);
+        left: 12px;
+        top: 15px;
+        color: #ff69b4;
+        font-size: 1.1em;
+        animation: heartPulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
       }
 
       .letter-paragraph:first-child {
-        font-size: 1.3em;
-        color: #ff6b9d;
+        font-size: 1.4em;
+        color: #d63384;
         font-family: "Dancing Script", cursive;
         text-align: center;
-        padding-left: 0;
+        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.6),
+          rgba(255, 240, 245, 0.8)
+        );
+        border-left: none;
+        border: 2px solid rgba(255, 105, 180, 0.4);
+        font-weight: 700;
       }
 
       .letter-paragraph:first-child::before {
         display: none;
+      }
+
+      .letter-paragraph:first-child:hover {
+        transform: scale(1.02);
+      }
+
+      /* Love Quote Highlight */
+      .love-quote-highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.7),
+          rgba(255, 240, 245, 0.9)
+        );
+        padding: 25px 30px;
+        margin: 25px 0;
+        border-radius: 20px;
+        text-align: center;
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8em;
+        color: #d63384;
+        border: 2px dashed rgba(255, 105, 180, 0.5);
+        position: relative;
+        z-index: 1;
+      }
+
+      .love-quote-highlight::before,
+      .love-quote-highlight::after {
+        content: "❝";
+        font-size: 2em;
+        color: rgba(255, 105, 180, 0.4);
+        position: absolute;
+        top: 5px;
+        left: 15px;
+      }
+
+      .love-quote-highlight::after {
+        content: "❞";
+        left: auto;
+        right: 15px;
+        top: auto;
+        bottom: 5px;
+      }
+
+      /* Love Promise Banner */
+      .love-promise-banner {
+        background: linear-gradient(90deg, #ff6b9d, #c56cf0, #ff6b9d);
+        background-size: 200% 100%;
+        animation: gradientShift 4s ease-in-out infinite;
+        padding: 20px 30px;
+        margin: 25px 0;
+        border-radius: 50px;
+        text-align: center;
+        color: white;
+        font-family: "Dancing Script", cursive;
+        font-size: 1.5em;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .love-promise-banner::before {
+        content: "💍";
+        margin-right: 10px;
+      }
+
+      .love-promise-banner::after {
+        content: "💍";
+        margin-left: 10px;
+      }
+
+      /* Love Declaration Box */
+      .love-declaration {
+        background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+        padding: 30px;
+        margin: 25px 0;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .love-declaration::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .love-declaration-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2em;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .love-declaration-text {
+        font-size: 1.2em;
+        line-height: 1.8;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Animated Hearts Trail */
+      .hearts-trail {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hearts-trail span {
+        font-size: 1.5em;
+        animation: trailBounce 1s ease-in-out infinite;
+      }
+
+      .hearts-trail span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .hearts-trail span:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .hearts-trail span:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .hearts-trail span:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .hearts-trail span:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+      .hearts-trail span:nth-child(6) {
+        animation-delay: 0.5s;
+      }
+      .hearts-trail span:nth-child(7) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes trailBounce {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-10px) scale(1.2);
+        }
+      }
+
+      /* Letter Divider */
+      .letter-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .letter-divider::before,
+      .letter-divider::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 105, 180, 0.5),
+          transparent
+        );
+      }
+
+      .letter-divider span {
+        padding: 0 20px;
+        font-size: 1.5em;
+        animation: dividerPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes dividerPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 0.8;
+        }
       }
 
       /* Enhanced Signature */
@@ -2500,6 +2827,37 @@
 
         <!-- Enhanced Letter Content -->
         <div class="monthsary-letter-enhanced">
+          <!-- Floating Hearts Inside Letter -->
+          <span class="letter-floating-heart" style="top: 10%; left: 5%"
+            >💕</span
+          >
+          <span
+            class="letter-floating-heart"
+            style="top: 25%; right: 8%; animation-delay: 1s"
+            >💖</span
+          >
+          <span
+            class="letter-floating-heart"
+            style="top: 45%; left: 3%; animation-delay: 2s"
+            >💗</span
+          >
+          <span
+            class="letter-floating-heart"
+            style="top: 65%; right: 5%; animation-delay: 3s"
+            >💓</span
+          >
+          <span
+            class="letter-floating-heart"
+            style="top: 85%; left: 7%; animation-delay: 4s"
+            >💞</span
+          >
+
+          <!-- Hearts Trail -->
+          <div class="hearts-trail">
+            <span>💜</span><span>💕</span><span>💖</span><span>💗</span
+            ><span>💖</span><span>💕</span><span>💜</span>
+          </div>
+
           <p class="letter-paragraph">
             Hello love, mahal, lovelove, asawa ko. Happy 5th monthsary po ang
             bilis po talaga ng panahon umabot na tayo ng 5 months, naalala ko pa
@@ -2527,6 +2885,13 @@
             isipin na makakasama po kita sa lahat hanggang dulo pero mas masarap
             ka talaga e 😅 iba talaga ang sarap ng isang Aienne Joy Facun hehe.
           </p>
+
+          <!-- Love Quote Highlight -->
+          <div class="love-quote-highlight">
+            Ikaw ang dahilan kung bakit gusto kong maging better version of
+            myself 💕
+          </div>
+
           <p class="letter-paragraph">
             Salamat sa pagiging mabuting partner, bestfriend, at everything.
             Can't wait na magkita po ulit tayo. Alam mo naman po na kapag
@@ -2570,6 +2935,15 @@
             Kahit simple lang ang buhay, basta ikaw ang kasama ko, kumpleto na
             po ako.
           </p>
+
+          <!-- Love Promise Banner -->
+          <div class="love-promise-banner">
+            Pangako ko, ikaw at ikaw lang... forever and always
+          </div>
+
+          <!-- Letter Divider -->
+          <div class="letter-divider"><span>💍</span></div>
+
           <p class="letter-paragraph">
             At kahit gaano pa kahaba ang hintayan, kahit gaano pa kahirap ang
             proseso, maghihintay po ako. Kasi ang hinihintay ko naman po ay
@@ -2647,13 +3021,26 @@
             kung bakit ako lalaban. Gusto kong tumanda na ikaw ang kasama, ikaw
             ang kausap, ikaw ang inuuwian.
           </p>
+          <!-- Letter Divider -->
+          <div class="letter-divider"><span>💕</span></div>
+
           <p class="letter-paragraph">Happy 5th monthsary, mahal ko.</p>
-          <p class="letter-paragraph">
-            Love na love po kita at mahal na mahal na mahal po kita.
-          </p>
-          <p class="letter-paragraph">
-            I love you so much, lovelove ko. Muuuuaaahhh 😘😘😘😘💜💜💜💜
-          </p>
+
+          <!-- Love Declaration Box -->
+          <div class="love-declaration">
+            <div class="love-declaration-title">✨ My Promise To You ✨</div>
+            <div class="love-declaration-text">
+              Love na love po kita at mahal na mahal na mahal po kita.<br />
+              I love you so much, lovelove ko!<br />
+              Muuuuaaahhh 😘😘😘😘💜💜💜💜
+            </div>
+          </div>
+
+          <!-- Final Hearts Trail -->
+          <div class="hearts-trail">
+            <span>💜</span><span>💖</span><span>💕</span><span>❤️</span
+            ><span>💕</span><span>💖</span><span>💜</span>
+          </div>
         </div>
 
         <!-- Enhanced Signature -->

@@ -1717,6 +1717,187 @@
       /* Welcome Screen */
       .welcome {
         text-align: center;
+        position: relative;
+      }
+
+      /* Welcome header styling */
+      .welcome-header {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .welcome-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.2em;
+        color: #fff;
+        margin-bottom: 10px;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+        animation: welcomeTitlePulse 3s ease-in-out infinite;
+      }
+
+      @keyframes welcomeTitlePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+      }
+
+      .welcome-subtitle {
+        font-family: "Playfair Display", serif;
+        font-size: 1em;
+        color: rgba(255, 218, 233, 0.95);
+        font-style: italic;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 8px;
+      }
+
+      .welcome-hearts {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+      }
+
+      .welcome-hearts span {
+        font-size: 1.2em;
+        animation: welcomeHeartBeat 1.5s ease-in-out infinite;
+      }
+
+      .welcome-hearts span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .welcome-hearts span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .welcome-hearts span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .welcome-hearts span:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .welcome-hearts span:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+
+      @keyframes welcomeHeartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+      }
+
+      /* Welcome decorations */
+      .welcome-decorations {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .welcome-sparkle {
+        position: absolute;
+        font-size: 1.3em;
+        animation: welcomeSparkle 4s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes welcomeSparkle {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.4) rotate(180deg);
+          opacity: 1;
+        }
+      }
+
+      /* Enhanced button card styling */
+      .welcome-btn-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 15px 15px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(255, 182, 193, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .welcome-btn-card:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+      }
+
+      .btn-icon {
+        font-size: 1.5em;
+        display: block;
+        margin-bottom: 6px;
+        animation: btnIconFloat 2s ease-in-out infinite;
+      }
+
+      @keyframes btnIconFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .btn-label {
+        font-size: 0.9em;
+        color: rgba(255, 218, 233, 0.8);
+        margin-top: 8px;
+        display: block;
+      }
+
+      /* Divider styling */
+      .welcome-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 15px 0;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .welcome-divider::before,
+      .welcome-divider::after {
+        content: "";
+        height: 1px;
+        width: 50px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+      }
+
+      .welcome-divider span {
+        font-size: 1.2em;
+        animation: dividerPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes dividerPulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
       }
 
       /* Background image for welcome section */
@@ -1746,12 +1927,14 @@
 
       /* Transparent container for welcome section */
       .container:has(#welcomeSection.active) {
-        max-width: 450px;
-        padding: 40px 35px;
-        overflow-y: hidden;
-        background: rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        max-width: 480px;
+        padding: 25px 25px 30px;
+        overflow-y: auto;
+        max-height: 90vh;
+        background: rgba(0, 0, 0, 0.2);
+        border: 2px solid rgba(255, 182, 193, 0.3);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35),
+          0 0 30px rgba(255, 107, 157, 0.15);
       }
 
       .welcome h1 {
@@ -1798,40 +1981,105 @@
         overflow: hidden;
       }
 
-      /* Transparent buttons for welcome section */
+      /* Enhanced buttons for welcome section */
       .container:has(#welcomeSection.active) .btn-primary {
-        background: rgba(255, 107, 157, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.4),
+          rgba(255, 160, 122, 0.4)
+        );
         border: 2px solid #ff69b4;
         color: #fff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container:has(#welcomeSection.active) .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: btnShine 2.5s infinite;
+      }
+
+      @keyframes btnShine {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
       }
 
       .container:has(#welcomeSection.active) .btn-primary:hover {
-        background: rgba(255, 107, 157, 0.5);
-        box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.6),
+          rgba(255, 160, 122, 0.6)
+        );
+        box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+        transform: translateY(-3px) scale(1.02);
       }
 
       .container:has(#welcomeSection.active) .btn-secondary {
-        background: rgba(197, 108, 240, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(197, 108, 240, 0.4),
+          rgba(255, 184, 209, 0.4)
+        );
         border: 2px solid #c56cf0;
         color: #fff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container:has(#welcomeSection.active) .btn-secondary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: btnShine 2.5s infinite 0.5s;
       }
 
       .container:has(#welcomeSection.active) .btn-secondary:hover {
-        background: rgba(197, 108, 240, 0.5);
-        box-shadow: 0 8px 20px rgba(197, 108, 240, 0.4);
+        background: linear-gradient(
+          135deg,
+          rgba(197, 108, 240, 0.6),
+          rgba(255, 184, 209, 0.6)
+        );
+        box-shadow: 0 8px 25px rgba(197, 108, 240, 0.5);
+        transform: translateY(-3px) scale(1.02);
       }
 
       .container:has(#welcomeSection.active) .btn-back {
-        background: rgba(255, 255, 255, 0.2);
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.4);
         color: #fff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       }
 
       .container:has(#welcomeSection.active) .btn-back:hover {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
       }
 
       /* Buttons */
@@ -3619,14 +3867,67 @@
       <!-- Welcome Section -->
       <div class="section" id="welcomeSection">
         <div class="welcome">
-          <div class="btn-group">
-            <button class="btn-primary" onclick="showSection('monthsary')">
-              💕 Monthsary Letter
-            </button>
-            <button class="btn-secondary" onclick="showSection('birthday')">
-              🎂 Birthday Letter
-            </button>
+          <!-- Floating decorations -->
+          <div class="welcome-decorations">
+            <span
+              class="welcome-sparkle"
+              style="left: 5%; top: 10%; animation-delay: 0s"
+              >✨</span
+            >
+            <span
+              class="welcome-sparkle"
+              style="right: 8%; top: 15%; animation-delay: 0.5s"
+              >💫</span
+            >
+            <span
+              class="welcome-sparkle"
+              style="left: 8%; bottom: 15%; animation-delay: 1s"
+              >⭐</span
+            >
+            <span
+              class="welcome-sparkle"
+              style="right: 5%; bottom: 20%; animation-delay: 1.5s"
+              >💖</span
+            >
           </div>
+
+          <!-- Welcome Header -->
+          <div class="welcome-header">
+            <h1 class="welcome-title">💌 Welcome, My Love 💌</h1>
+            <p class="welcome-subtitle">
+              Choose a special letter just for you...
+            </p>
+            <div class="welcome-hearts">
+              <span>💗</span>
+              <span>💕</span>
+              <span>💖</span>
+              <span>💕</span>
+              <span>💗</span>
+            </div>
+          </div>
+
+          <!-- Button Cards -->
+          <div class="welcome-btn-card">
+            <span class="btn-icon">💍</span>
+            <button class="btn-primary" onclick="showSection('monthsary')">
+              💕 Monthsary Letter 💕
+            </button>
+            <span class="btn-label">Our love story continues...</span>
+          </div>
+
+          <div class="welcome-btn-card">
+            <span class="btn-icon">🎂</span>
+            <button class="btn-secondary" onclick="showSection('birthday')">
+              🎉 Birthday Letter 🎉
+            </button>
+            <span class="btn-label">A special wish for you...</span>
+          </div>
+
+          <!-- Divider -->
+          <div class="welcome-divider">
+            <span>💋</span>
+          </div>
+
           <button class="btn-back" onclick="showSection('security')">
             ← Back to Login
           </button>

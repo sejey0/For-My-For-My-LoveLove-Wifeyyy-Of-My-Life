@@ -310,27 +310,103 @@
 
       /* Red Room Styling */
       .red-room-header h2 {
-        color: #ff4757;
-        text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        color: #ff2a2a;
+        text-shadow: 0 0 30px rgba(255, 0, 0, 0.8),
+          0 0 60px rgba(255, 0, 0, 0.5);
+        animation: redTextPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes redTextPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 30px rgba(255, 0, 0, 0.8),
+            0 0 60px rgba(255, 0, 0, 0.5);
+        }
+        50% {
+          text-shadow: 0 0 50px rgba(255, 0, 0, 1),
+            0 0 80px rgba(255, 0, 0, 0.7);
+        }
       }
 
       .red-room-header .special-info {
-        color: #ffcccc;
+        color: #ff6b6b;
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      }
+
+      /* Red Room floating fire particles */
+      .red-room-particles {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .fire-particle {
+        position: absolute;
+        font-size: 1.5em;
+        animation: fireFloat 6s ease-in-out infinite;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+      }
+
+      @keyframes fireFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateY(-20px) scale(1.2);
+          opacity: 1;
+        }
       }
 
       .container:has(#redroomSection.active) {
         background: linear-gradient(
           135deg,
-          rgba(40, 0, 0, 0.98),
+          rgba(60, 0, 0, 0.98),
+          rgba(100, 0, 0, 0.98),
           rgba(80, 0, 0, 0.98),
-          rgba(60, 0, 0, 0.98)
+          rgba(50, 0, 0, 0.98)
         );
-        box-shadow: 0 0 60px rgba(255, 0, 0, 0.3),
-          inset 0 0 100px rgba(255, 0, 0, 0.1);
+        background-size: 400% 400%;
+        animation: redGlow 3s ease-in-out infinite,
+          redGradientMove 8s ease infinite;
+        box-shadow: 0 0 80px rgba(255, 0, 0, 0.4),
+          inset 0 0 120px rgba(255, 0, 0, 0.15), 0 0 150px rgba(255, 0, 0, 0.2);
+        border: 2px solid rgba(255, 0, 0, 0.3);
+      }
+
+      @keyframes redGradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       .container:has(#redroomSection.active) .letter-content {
-        color: #ffdddd;
+        color: #ffcccc;
+        text-shadow: 0 0 5px rgba(255, 100, 100, 0.3);
+      }
+
+      .container:has(#redroomSection.active) .letter-content p {
+        border-left: 3px solid rgba(255, 0, 0, 0.5);
+        padding-left: 15px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .container:has(#redroomSection.active) .letter-content p:hover {
+        border-left-color: #ff0000;
+        background: rgba(255, 0, 0, 0.1);
+        padding: 10px 15px;
+        border-radius: 0 10px 10px 0;
       }
 
       .container:has(#redroomSection.active) .signature {
@@ -367,12 +443,14 @@
       @keyframes redGlow {
         0%,
         100% {
-          box-shadow: 0 0 60px rgba(255, 0, 0, 0.3),
-            inset 0 0 100px rgba(255, 0, 0, 0.1);
+          box-shadow: 0 0 80px rgba(255, 0, 0, 0.4),
+            inset 0 0 120px rgba(255, 0, 0, 0.15),
+            0 0 150px rgba(255, 0, 0, 0.2);
         }
         50% {
-          box-shadow: 0 0 80px rgba(255, 0, 0, 0.5),
-            inset 0 0 120px rgba(255, 0, 0, 0.15);
+          box-shadow: 0 0 120px rgba(255, 0, 0, 0.6),
+            inset 0 0 150px rgba(255, 0, 0, 0.25),
+            0 0 200px rgba(255, 0, 0, 0.35);
         }
       }
 
@@ -405,14 +483,147 @@
 
       .redroom-security-screen {
         text-align: center;
+        position: relative;
+      }
+
+      /* Red room security floating flames */
+      .redroom-security-flames {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .flame-particle {
+        position: absolute;
+        font-size: 1.2em;
+        animation: flameFloat 4s ease-in-out infinite;
+        filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.8));
+      }
+
+      @keyframes flameFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1) rotate(-5deg);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(-15px) scale(1.15) rotate(5deg);
+          opacity: 1;
+        }
+      }
+
+      /* Red room security header styling */
+      .redroom-security-header {
+        margin-bottom: 20px;
+      }
+
+      .redroom-security-header h2 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2em;
+        color: #ff2a2a;
+        margin-bottom: 8px;
+        text-shadow: 0 0 30px rgba(255, 0, 0, 0.8),
+          0 0 60px rgba(255, 0, 0, 0.4);
+        animation: securityPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes securityPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 30px rgba(255, 0, 0, 0.8),
+            0 0 60px rgba(255, 0, 0, 0.4);
+        }
+        50% {
+          text-shadow: 0 0 50px rgba(255, 0, 0, 1),
+            0 0 80px rgba(255, 0, 0, 0.6);
+        }
+      }
+
+      .redroom-security-subtitle {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95em;
+        color: #ff8888;
+        font-style: italic;
+        animation: fadeGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes fadeGlow {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Red room question card */
+      .redroom-question-card {
+        background: linear-gradient(
+          135deg,
+          rgba(60, 0, 0, 0.8),
+          rgba(40, 0, 0, 0.9)
+        );
+        border: 2px solid rgba(255, 0, 0, 0.3);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 15px 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(255, 0, 0, 0.2),
+          inset 0 0 30px rgba(255, 0, 0, 0.05);
+      }
+
+      .redroom-question-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 0, 0, 0.1),
+          transparent
+        );
+        animation: cardShimmer 3s ease-in-out infinite;
+      }
+
+      @keyframes cardShimmer {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      .redroom-question-card .question-icon {
+        font-size: 2em;
+        margin-bottom: 10px;
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
       }
 
       .redroom-security-screen h2 {
         font-family: "Dancing Script", cursive;
         font-size: 2.2em;
-        color: #ff4757;
+        color: #ff2a2a;
         margin-bottom: 15px;
-        text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        text-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
       }
 
       .redroom-security-screen .security-text {
@@ -4296,12 +4507,55 @@
       <!-- Red Room Security Section -->
       <div class="section" id="redroomSecuritySection">
         <div class="redroom-security-screen">
-          <h2>🔒 Secret Access 🔥</h2>
-          <p class="security-text">Only you know the answer...</p>
+          <!-- Floating flames -->
+          <div class="redroom-security-flames">
+            <span
+              class="flame-particle"
+              style="left: 5%; top: 10%; animation-delay: 0s"
+              >🔥</span
+            >
+            <span
+              class="flame-particle"
+              style="right: 8%; top: 8%; animation-delay: 0.3s"
+              >❤️</span
+            >
+            <span
+              class="flame-particle"
+              style="left: 8%; bottom: 15%; animation-delay: 0.6s"
+              >🔥</span
+            >
+            <span
+              class="flame-particle"
+              style="right: 5%; bottom: 20%; animation-delay: 0.9s"
+              >💋</span
+            >
+            <span
+              class="flame-particle"
+              style="left: 50%; top: 5%; animation-delay: 1.2s"
+              >🔥</span
+            >
+            <span
+              class="flame-particle"
+              style="right: 15%; top: 50%; animation-delay: 1.5s"
+              >❤️</span
+            >
+          </div>
 
-          <div class="question-container">
-            <label for="redroomQuestion">When is our monthsary?</label>
-            <input type="date" id="redroomQuestion" class="date-input" />
+          <!-- Header -->
+          <div class="redroom-security-header">
+            <h2>🔒 Secret Access 🔥</h2>
+            <p class="redroom-security-subtitle">
+              Only for your eyes, my love...
+            </p>
+          </div>
+
+          <!-- Question Card -->
+          <div class="redroom-question-card">
+            <div class="question-icon">💕</div>
+            <div class="question-container">
+              <label for="redroomQuestion">When is our monthsary?</label>
+              <input type="date" id="redroomQuestion" class="date-input" />
+            </div>
           </div>
 
           <div class="error-message" id="redroomErrorMessage"></div>
@@ -4350,34 +4604,83 @@
 
         <!-- Main Content -->
         <div class="red-room-main-content">
-          <div class="letter-header red-room-header">
-            <h2>Welcome to Our Red Room 🔥</h2>
-            <p class="special-info">A special place just for us...</p>
+          <!-- Fire particles -->
+          <div class="red-room-particles">
+            <span
+              class="fire-particle"
+              style="left: 5%; top: 10%; animation-delay: 0s"
+              >🔥</span
+            >
+            <span
+              class="fire-particle"
+              style="right: 8%; top: 15%; animation-delay: 0.5s"
+              >❤️</span
+            >
+            <span
+              class="fire-particle"
+              style="left: 10%; bottom: 20%; animation-delay: 1s"
+              >🔥</span
+            >
+            <span
+              class="fire-particle"
+              style="right: 5%; bottom: 25%; animation-delay: 1.5s"
+              >💢</span
+            >
+            <span
+              class="fire-particle"
+              style="left: 50%; top: 5%; animation-delay: 2s"
+              >🔥</span
+            >
+            <span
+              class="fire-particle"
+              style="right: 15%; top: 40%; animation-delay: 2.5s"
+              >❤️</span
+            >
+            <span
+              class="fire-particle"
+              style="left: 8%; top: 50%; animation-delay: 3s"
+              >💥</span
+            >
           </div>
 
           <div class="letter-content red-room-content">
             <p>My Dearest Love,</p>
             <p>
-              This is our secret space, where I can tell you all the things that
-              make my heart race when I think of you...
+              Hello love, i miss your lips gustong-gusto ko nilalaplap ang tamis
+              e, tapos 'yong leeg ko super bango favorite ko ang amoy hindi
+              nakakasawa nakaka-adik, tapos pababa na ako n'yan sa dede mo sarap
+              kaya dumede sa dalawang nipples mo fav ko kaya 'yan, tapos
+              hihimas-himasin ko na ang puke mo kasi wet, pati ako wet na rin
+              ang matigas na hehe, ansarap mo mahal kaya ang hirap mo tigilan
+              lalo kapag nakapasok na ko sa puke mo ansarap andulas e, basta
+              tuloy-tuloy lang ang pag-kantot ko sayo at ilang beses kita
+              naputokan sarap ng puke mo mahal, sa susunod mahal fifingerin ulit
+              kita mabilis habang nag-rub ka hanggang mag-cum ka habang
+              nilalaplap kita.
             </p>
             <p>
-              Every touch, every kiss, every moment with you sets my soul on
-              fire. You are my passion, my desire, and my everything.
+              Hardfuck kita ng dogstyle mabilis kita kakantotin hahawak ko sa
+              bewang mo para may pwersa bibilisan ko hanggang mag-cum ako,
+              favorite ko puke mo love ansarap at andulas po e yummers hehe.
+              Kapag nasa top mo ako gusto ko nakatingin sayo habang kinakantot
+              kita kasi mas nasasarapan ko makita mo ba naman ay ang mahal mo
+              ang kinakantot mo diba, masarap na mahal mo pa, gusto ko
+              binibilisan kasi ang hirap tigilan. Kapag ikaw naman po ang nasa
+              top ang ganda ng view ko ang humahagod ang tite ko kapag nakapasok
+              sabay lamas sa dalawa mong dede, tapos kapag magpapahinga ka ako
+              ang gagalaw para malabas pasok tite ko sa puke mo, gustong-gusto
+              kita kinakantot mahal ang sarap mo po akin kalang po, ikaw lang
+              ang kakantotin at i-hard fuck, ikaw lang ang puputokan.
             </p>
             <p>
-              I love the way you look at me, the way you hold me close, and the
-              way you make me feel like I'm the only person in the world.
+              I-rub ko puke mo kasi super dulas na hanggang mag-cum ka tapos
+              kapag may cum kana didilaan ko kasi super dulas na nun, tapos sex
+              ulit tayo sa cr tuwad ka ipapasok ko madulas kasi basa e, tapos
+              upo ulit ako sa bowl patong ka habang nakapasok hanggang mag-cum
+              ka pasok na pasok at hagod na hagod sa tite ko ang puke mo, soon
+              mahal i'll smash your ass and i'll fuck your pussy hard, sheettt
+              ughhhh! I love you so muchhh, muuuuuuuuaaaaahhhhhh, ughhhhhh. 🔥❤️
             </p>
-            <p>
-              You are absolutely irresistible, and I am completely, hopelessly,
-              and utterly in love with you. 🔥❤️
-            </p>
-          </div>
-
-          <div class="signature">
-            Yours Passionately,<br />
-            Forever & Always 🔥
           </div>
 
           <button class="btn-back" onclick="showSection('monthsary')">

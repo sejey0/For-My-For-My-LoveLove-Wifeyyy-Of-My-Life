@@ -597,6 +597,724 @@
         }
       }
 
+      /* ===== MONTHSARY SECTION ENHANCED STYLES ===== */
+
+      /* Gradient Animated Background for Monthsary */
+      body:has(#monthsarySection.active) {
+        background: linear-gradient(
+          -45deg,
+          #ffecd2,
+          #fcb69f,
+          #ff9a9e,
+          #fecfef,
+          #ffecd2
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Monthsary Container Glow Effect */
+      .container:has(#monthsarySection.active) {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 40px rgba(255, 107, 157, 0.3),
+          0 20px 60px rgba(0, 0, 0, 0.15);
+        border: 2px solid rgba(255, 182, 193, 0.4);
+      }
+
+      /* Monthsary Header Enhancement */
+      .monthsary-header-enhanced {
+        position: relative;
+        padding: 30px 20px;
+        margin-bottom: 30px;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 182, 193, 0.2),
+          rgba(255, 218, 233, 0.3)
+        );
+        overflow: hidden;
+      }
+
+      .monthsary-header-enhanced::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 3s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+
+      .monthsary-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 3em;
+        background: linear-gradient(135deg, #ff6b9d, #c56cf0, #ff6b9d);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientText 3s ease infinite;
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes gradientText {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Pulsing Heart Icon */
+      .pulsing-heart {
+        display: inline-block;
+        font-size: 1.2em;
+        animation: pulse 1.5s ease-in-out infinite;
+        color: #ff6b9d;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+      }
+
+      /* Love Countdown Timer */
+      .love-countdown {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 25px 0;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        background: linear-gradient(135deg, #ff6b9d, #ffa07a);
+        padding: 15px 20px;
+        border-radius: 15px;
+        min-width: 80px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+      }
+
+      .countdown-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .countdown-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: white;
+        display: block;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .countdown-label {
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Romantic Quotes Carousel */
+      .quotes-carousel {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          rgba(197, 108, 240, 0.1),
+          rgba(255, 107, 157, 0.1)
+        );
+        border-radius: 20px;
+        padding: 30px;
+        margin: 30px 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 182, 193, 0.3);
+      }
+
+      .quotes-carousel::before,
+      .quotes-carousel::after {
+        content: '"';
+        font-family: "Dancing Script", cursive;
+        font-size: 4em;
+        color: rgba(255, 107, 157, 0.2);
+        position: absolute;
+      }
+
+      .quotes-carousel::before {
+        top: 10px;
+        left: 20px;
+      }
+
+      .quotes-carousel::after {
+        bottom: -20px;
+        right: 20px;
+      }
+
+      .quote-slide {
+        text-align: center;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        transition: opacity 0.8s ease;
+      }
+
+      .quote-slide.active {
+        opacity: 1;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+      }
+
+      .quote-text {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.2em;
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .quote-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .quote-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 107, 157, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .quote-dot.active {
+        background: #ff6b9d;
+        transform: scale(1.2);
+      }
+
+      /* Photo Gallery Grid */
+      .monthsary-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 30px 0;
+        padding: 20px;
+        background: rgba(255, 182, 193, 0.1);
+        border-radius: 20px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+      }
+
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 107, 157, 0.6),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 1;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(255, 107, 157, 0.4);
+      }
+
+      .gallery-item:hover::before {
+        opacity: 1;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-heart-overlay {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.4s ease;
+        z-index: 2;
+      }
+
+      .gallery-item:hover .gallery-heart-overlay {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Love Meter */
+      .love-meter-container {
+        margin: 30px 0;
+        padding: 25px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.1),
+          rgba(197, 108, 240, 0.1)
+        );
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      .love-meter-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8em;
+        color: #ff6b9d;
+        margin-bottom: 20px;
+      }
+
+      .love-meter {
+        position: relative;
+        height: 30px;
+        background: rgba(255, 182, 193, 0.3);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .love-meter-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b9d, #c56cf0, #ff6b9d);
+        background-size: 200% 100%;
+        border-radius: 15px;
+        width: 0%;
+        animation: loveFill 3s ease forwards, loveShine 2s ease-in-out infinite;
+      }
+
+      @keyframes loveFill {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes loveShine {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .love-meter-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+
+      /* Floating Decorations */
+      .monthsary-decorations {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .floating-sparkle {
+        position: absolute;
+        font-size: 1.5em;
+        animation: floatSparkle 6s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes floatSparkle {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+          opacity: 1;
+        }
+      }
+
+      /* Enhanced Letter Content Styling */
+      .monthsary-letter-enhanced {
+        position: relative;
+        padding: 30px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 240, 245, 0.9)
+        );
+        border-radius: 20px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 182, 193, 0.3);
+      }
+
+      .monthsary-letter-enhanced::before {
+        content: "💕";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2em;
+        background: white;
+        padding: 0 15px;
+      }
+
+      .letter-paragraph {
+        font-size: 1.15em;
+        line-height: 2;
+        color: #555;
+        text-align: justify;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .letter-paragraph::before {
+        content: "♥";
+        position: absolute;
+        left: 0;
+        color: rgba(255, 107, 157, 0.5);
+      }
+
+      .letter-paragraph:first-child {
+        font-size: 1.3em;
+        color: #ff6b9d;
+        font-family: "Dancing Script", cursive;
+        text-align: center;
+        padding-left: 0;
+      }
+
+      .letter-paragraph:first-child::before {
+        display: none;
+      }
+
+      /* Enhanced Signature */
+      .signature-enhanced {
+        text-align: center;
+        margin-top: 40px;
+        padding: 30px;
+        position: relative;
+      }
+
+      .signature-heart {
+        font-size: 3em;
+        animation: heartBeat 1.5s ease-in-out infinite;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      @keyframes heartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.2);
+        }
+      }
+
+      .signature-text {
+        font-family: "Dancing Script", cursive;
+        font-size: 2em;
+        color: #ff6b9d;
+        margin-bottom: 10px;
+      }
+
+      .signature-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3em;
+        color: #c56cf0;
+        font-style: italic;
+      }
+
+      /* Celebration Button */
+      .celebration-btn {
+        background: linear-gradient(135deg, #ff6b9d, #c56cf0);
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin: 20px 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .celebration-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .celebration-btn:hover::before {
+        left: 100%;
+      }
+
+      .celebration-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+      }
+
+      /* Confetti for Monthsary */
+      .monthsary-confetti {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1000;
+        overflow: hidden;
+      }
+
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: -20px;
+        animation: confettiFall 4s ease-out forwards;
+      }
+
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Lightbox for Gallery */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .lightbox.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 15px;
+        box-shadow: 0 0 50px rgba(255, 107, 157, 0.5);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 2.5em;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        transform: rotate(90deg);
+      }
+
+      /* Reasons I Love You Section */
+      .reasons-container {
+        margin: 30px 0;
+        padding: 25px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 218, 233, 0.4),
+          rgba(255, 182, 193, 0.2)
+        );
+        border-radius: 20px;
+      }
+
+      .reasons-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8em;
+        color: #ff6b9d;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .reason-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        margin: 10px 0;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(255, 107, 157, 0.15);
+        transform: translateX(-20px);
+        opacity: 0;
+        animation: slideInReason 0.5s ease forwards;
+      }
+
+      .reason-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .reason-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .reason-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .reason-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .reason-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes slideInReason {
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .reason-number {
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(135deg, #ff6b9d, #c56cf0);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .reason-text {
+        color: #666;
+        font-size: 1em;
+      }
+
+      /* Responsive adjustments for new elements */
+      @media (max-width: 768px) {
+        .monthsary-title {
+          font-size: 2.2em;
+        }
+
+        .love-countdown {
+          gap: 10px;
+        }
+
+        .countdown-item {
+          min-width: 65px;
+          padding: 10px 15px;
+        }
+
+        .countdown-number {
+          font-size: 1.5em;
+        }
+
+        .quote-text {
+          font-size: 1em;
+        }
+
+        .monthsary-gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ===== END MONTHSARY ENHANCED STYLES ===== */
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -1653,6 +2371,35 @@
 
       <!-- Monthsary Section -->
       <div class="section" id="monthsarySection">
+        <!-- Floating Decorations -->
+        <div class="monthsary-decorations" id="monthsaryDecorations">
+          <span
+            class="floating-sparkle"
+            style="left: 5%; top: 20%; animation-delay: 0s"
+            >✨</span
+          >
+          <span
+            class="floating-sparkle"
+            style="left: 15%; top: 60%; animation-delay: 1s"
+            >💫</span
+          >
+          <span
+            class="floating-sparkle"
+            style="left: 85%; top: 30%; animation-delay: 2s"
+            >⭐</span
+          >
+          <span
+            class="floating-sparkle"
+            style="left: 90%; top: 70%; animation-delay: 0.5s"
+            >💕</span
+          >
+          <span
+            class="floating-sparkle"
+            style="left: 50%; top: 10%; animation-delay: 1.5s"
+            >💖</span
+          >
+        </div>
+
         <!-- Left Side Images (scrolling up) -->
         <div class="monthsary-side-images left">
           <div class="monthsary-side-container">
@@ -1687,39 +2434,98 @@
           </div>
         </div>
 
-        <div class="letter-header">
-          <h2>Happy 5th Monthsary, My Love! 💕</h2>
+        <!-- Enhanced Header -->
+        <div class="monthsary-header-enhanced">
+          <h2 class="monthsary-title">
+            <span class="pulsing-heart">💕</span>
+            Happy 5th Monthsary, My Love!
+            <span class="pulsing-heart">💕</span>
+          </h2>
           <div class="date-info" id="currentDate"></div>
           <div class="special-info" id="monthsInfo"></div>
         </div>
 
-        <div class="letter-content">
-          <p>My Dearest Love,</p>
-          <p>
+        <!-- Love Countdown Timer -->
+        <div class="love-countdown" id="loveCountdown">
+          <div class="countdown-item">
+            <span class="countdown-number" id="countMonths">5</span>
+            <span class="countdown-label">Months</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countDays">0</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countHours">0</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countMinutes">0</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="countSeconds">0</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Love Meter -->
+        <div class="love-meter-container">
+          <div class="love-meter-title">💖 My Love For You 💖</div>
+          <div class="love-meter">
+            <div class="love-meter-fill" id="loveMeterFill"></div>
+            <span class="love-meter-text">∞ INFINITE ∞</span>
+          </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="monthsary-gallery">
+          <div
+            class="gallery-item"
+            onclick="openLightbox('images/1000037615.jpg')"
+          >
+            <img src="images/1000037615.jpg" alt="Our precious moment" />
+            <span class="gallery-heart-overlay">💕</span>
+          </div>
+          <div
+            class="gallery-item"
+            onclick="openLightbox('images/1000037616.jpg')"
+          >
+            <img src="images/1000037616.jpg" alt="Our precious moment" />
+            <span class="gallery-heart-overlay">💖</span>
+          </div>
+        </div>
+
+        <!-- Enhanced Letter Content -->
+        <div class="monthsary-letter-enhanced">
+          <p class="letter-paragraph">My Dearest Love,</p>
+          <p class="letter-paragraph">
             As I sit here thinking about us, I can't help but smile at how lucky
             I am to have you in my life. Every moment we spend together is a
             treasure, and every day with you feels like a beautiful dream I
             never want to wake up from.
           </p>
-          <p>
+          <p class="letter-paragraph">
             You are my sunshine on cloudy days, my anchor in stormy seas, and my
             home wherever we may be. Your smile lights up my world, and your
             laughter is the sweetest melody to my ears.
           </p>
-          <p>
+          <p class="letter-paragraph">
             Thank you for being patient with me, for understanding me, and for
             loving me unconditionally. I promise to cherish every moment we have
             together and to love you more with each passing day.
           </p>
-          <p>
+          <p class="letter-paragraph">
             Here's to us, to our love, and to many more wonderful months
             together. You mean the world to me, today and always.
           </p>
         </div>
 
-        <div class="signature">
-          Forever Yours,<br />
-          With All My Love ❤️
+        <!-- Enhanced Signature -->
+        <div class="signature-enhanced">
+          <span class="signature-heart">💕</span>
+          <div class="signature-text">Forever Yours,</div>
+          <div class="signature-name">With All My Love ❤️</div>
         </div>
 
         <button class="btn-redroom" onclick="showSection('redroomSecurity')">
@@ -1729,6 +2535,20 @@
           ← Back to Home
         </button>
       </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img
+          src=""
+          alt="Gallery Image"
+          class="lightbox-content"
+          id="lightboxImage"
+        />
+      </div>
+
+      <!-- Monthsary Confetti Container -->
+      <div class="monthsary-confetti" id="monthsaryConfetti"></div>
 
       <!-- Red Room Security Section -->
       <div class="section" id="redroomSecuritySection">
@@ -1944,7 +2764,7 @@
     <script>
       // ===== CONFIGURATION =====
       // IMPORTANT: Update these dates with your actual dates!
-      const RELATIONSHIP_START_DATE = new Date("2024-01-01"); // Change to your relationship start date
+      const RELATIONSHIP_START_DATE = new Date("2025-07-15"); // Monthsary date - July 15, 2025
       const BIRTHDAY_DATE = new Date("2000-05-15"); // Change to your partner's birthday (year-month-day)
 
       // SECURITY QUESTION CONFIGURATION
@@ -2391,7 +3211,198 @@
           "December 15, 2025";
         document.getElementById("monthsInfo").textContent =
           "🎉 5 Months Together! 🎉";
+
+        // Start the love countdown timer
+        startLoveCountdown();
+
+        // Start the quotes carousel
+        startQuotesCarousel();
+
+        // Reset love meter animation
+        resetLoveMeter();
       }
+
+      // ===== MONTHSARY ENHANCED FEATURES =====
+
+      // Love Countdown Timer
+      let countdownInterval;
+      function startLoveCountdown() {
+        // Clear any existing interval
+        if (countdownInterval) clearInterval(countdownInterval);
+
+        function updateCountdown() {
+          const now = new Date();
+          const startDay = 15; // Your monthsary day (15th of each month)
+          const startMonth = 6; // July (0-indexed, so July = 6)
+          const startYear = 2025;
+
+          // Calculate months properly
+          let months = (now.getFullYear() - startYear) * 12;
+          months += now.getMonth() - startMonth;
+
+          // Adjust if we haven't reached the day yet this month
+          if (now.getDate() < startDay) {
+            months--;
+          }
+
+          // Calculate the last monthsary date (midnight)
+          let lastMonthsaryYear = now.getFullYear();
+          let lastMonthsaryMonth = now.getMonth();
+
+          if (now.getDate() < startDay) {
+            lastMonthsaryMonth--;
+            if (lastMonthsaryMonth < 0) {
+              lastMonthsaryMonth = 11;
+              lastMonthsaryYear--;
+            }
+          }
+
+          const lastMonthsary = new Date(
+            lastMonthsaryYear,
+            lastMonthsaryMonth,
+            startDay,
+            0,
+            0,
+            0,
+            0
+          );
+
+          // Calculate time elapsed since last monthsary
+          const diff = now - lastMonthsary;
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          // Update the display
+          document.getElementById("countMonths").textContent = months;
+          document.getElementById("countDays").textContent = days;
+          document.getElementById("countHours").textContent = hours;
+          document.getElementById("countMinutes").textContent = minutes;
+          document.getElementById("countSeconds").textContent = seconds;
+        }
+
+        updateCountdown();
+        countdownInterval = setInterval(updateCountdown, 1000);
+      }
+
+      // Quotes Carousel
+      let currentQuote = 0;
+      let quoteInterval;
+      function startQuotesCarousel() {
+        // Clear any existing interval
+        if (quoteInterval) clearInterval(quoteInterval);
+
+        quoteInterval = setInterval(() => {
+          currentQuote = (currentQuote + 1) % 2;
+          showQuote(currentQuote);
+        }, 5000);
+      }
+
+      function showQuote(index) {
+        currentQuote = index;
+
+        // Update slides
+        document.querySelectorAll(".quote-slide").forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+
+        // Update dots
+        document.querySelectorAll(".quote-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+      }
+
+      // Reset Love Meter Animation
+      function resetLoveMeter() {
+        const loveMeter = document.getElementById("loveMeterFill");
+        if (loveMeter) {
+          loveMeter.style.animation = "none";
+          loveMeter.offsetHeight; // Trigger reflow
+          loveMeter.style.animation =
+            "loveFill 3s ease forwards, loveShine 2s ease-in-out infinite";
+        }
+      }
+
+      // Lightbox Functions
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        if (lightbox && lightboxImage) {
+          lightboxImage.src = imageSrc;
+          lightbox.classList.add("active");
+        }
+      }
+
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        if (lightbox) {
+          lightbox.classList.remove("active");
+        }
+      }
+
+      // Monthsary Confetti Celebration
+      function triggerMonthsaryConfetti() {
+        const container = document.getElementById("monthsaryConfetti");
+        if (!container) return;
+
+        // Clear existing confetti
+        container.innerHTML = "";
+
+        const colors = [
+          "#ff6b9d",
+          "#c56cf0",
+          "#ffa07a",
+          "#ffb8d1",
+          "#ff69b4",
+          "#ff1493",
+          "#ff85c1",
+          "#ffc0cb",
+        ];
+        const shapes = ["❤️", "💕", "💖", "💗", "💞", "💘", "✨", "⭐", "🌟"];
+
+        // Create 80 pieces of confetti
+        for (let i = 0; i < 80; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti-piece";
+
+          // Random shape or colored square
+          if (Math.random() > 0.5) {
+            confetti.textContent =
+              shapes[Math.floor(Math.random() * shapes.length)];
+            confetti.style.fontSize = Math.random() * 15 + 10 + "px";
+            confetti.style.background = "none";
+          } else {
+            confetti.style.width = Math.random() * 10 + 5 + "px";
+            confetti.style.height = Math.random() * 10 + 5 + "px";
+            confetti.style.background =
+              colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
+          }
+
+          confetti.style.left = Math.random() * 100 + "%";
+          confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
+          confetti.style.animationDelay = Math.random() * 0.5 + "s";
+
+          container.appendChild(confetti);
+        }
+
+        // Clear confetti after animation
+        setTimeout(() => {
+          container.innerHTML = "";
+        }, 5000);
+      }
+
+      // Close lightbox with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeLightbox();
+        }
+      });
+
+      // ===== END MONTHSARY ENHANCED FEATURES =====
 
       // Update birthday information
       function updateBirthdayInfo() {

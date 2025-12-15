@@ -110,14 +110,15 @@
         background: rgba(255, 107, 157, 0.7);
       }
 
-      /* Smaller container for security section */
+      /* Enhanced container for security section */
       .container:has(#securitySection.active) {
-        max-width: 450px;
-        padding: 40px 35px;
-        overflow-y: hidden;
+        max-width: 500px;
+        padding: 35px 30px 50px;
+        overflow-y: auto;
         background: rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 182, 193, 0.3);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3),
+          0 0 30px rgba(255, 107, 157, 0.2);
         position: relative;
         z-index: 100;
       }
@@ -207,26 +208,54 @@
         z-index: 10;
       }
 
-      /* Style adjustments for transparent container */
-      .container:has(#securitySection.active) .security-screen h2 {
+      /* Style adjustments for security section with enhanced design */
+      .container:has(#securitySection.active) .security-screen h2,
+      .container:has(#securitySection.active) .security-subtitle {
         color: #fff;
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       }
 
       .container:has(#securitySection.active) .security-text {
-        color: rgba(255, 182, 193, 0.85);
+        color: rgba(255, 218, 233, 0.95);
         text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
       }
 
+      .container:has(#securitySection.active) .security-header {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.2),
+          rgba(197, 108, 240, 0.15)
+        );
+        border: 1px solid rgba(255, 182, 193, 0.3);
+      }
+
+      .container:has(#securitySection.active) .question-card {
+        background: transparent;
+        border-color: rgba(255, 182, 193, 0.4);
+      }
+
+      .container:has(#securitySection.active) .question-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 107, 157, 0.6);
+      }
+
+      .container:has(#securitySection.active) .question-icon {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+      }
+
       .container:has(#securitySection.active) .question-container label {
-        color: rgba(255, 182, 193, 0.85);
+        color: rgba(255, 218, 233, 0.95);
         text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .container:has(#securitySection.active) .security-hint {
+        color: rgba(255, 182, 193, 0.9);
       }
 
       .container:has(#securitySection.active) .question-container input {
         background: rgba(255, 255, 255, 0.2);
         border: 2px solid #ff69b4;
-        color: #ff1493;
+        color: #fff;
         position: relative;
         z-index: 102;
         pointer-events: auto;
@@ -235,13 +264,22 @@
       .container:has(#securitySection.active)
         .question-container
         input::placeholder {
-        color: rgba(255, 20, 147, 0.8);
+        color: rgba(255, 182, 193, 0.7);
       }
 
       .container:has(#securitySection.active) .question-container input:focus {
         border-color: #ff1493;
         background: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+      }
+
+      .container:has(#securitySection.active) .progress-step {
+        border-color: rgba(255, 182, 193, 0.5);
+        background: rgba(255, 182, 193, 0.2);
+      }
+
+      .container:has(#securitySection.active) .progress-connector {
+        background: rgba(255, 182, 193, 0.3);
       }
 
       /* Wide container for letter sections */
@@ -2414,6 +2452,46 @@
       /* Security Section */
       .security-screen {
         text-align: center;
+        position: relative;
+      }
+
+      /* Security Header Enhancement */
+      .security-header {
+        position: relative;
+        padding: 20px 15px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.15),
+          rgba(197, 108, 240, 0.1)
+        );
+        overflow: hidden;
+      }
+
+      .security-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: securityShimmer 3s infinite;
+      }
+
+      @keyframes securityShimmer {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
       }
 
       .security-screen h2 {
@@ -2421,6 +2499,38 @@
         font-size: 2.2em;
         color: #ff6b9d;
         margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Lock Icon Animation */
+      .security-lock-icon {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        display: inline-block;
+        animation: lockPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes lockPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          filter: drop-shadow(0 0 5px rgba(255, 107, 157, 0.5));
+        }
+        50% {
+          transform: scale(1.1);
+          filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.8));
+        }
+      }
+
+      /* Subtitle with typing effect container */
+      .security-subtitle {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.5em;
+        color: #c56cf0;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
       }
 
       .security-text {
@@ -2428,10 +2538,144 @@
         color: #666;
         margin-bottom: 25px;
         font-style: italic;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Romantic hint text */
+      .security-hint {
+        font-size: 0.85em;
+        color: #ff69b4;
+        margin-top: 8px;
+        font-style: italic;
+        opacity: 0.8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .security-hint .hint-icon {
+        animation: hintBounce 1.5s ease-in-out infinite;
+      }
+
+      @keyframes hintBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-3px);
+        }
+      }
+
+      /* Progress indicator for questions */
+      .question-progress {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .progress-step {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 182, 193, 0.3);
+        border: 2px solid rgba(255, 107, 157, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #ff6b9d;
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .progress-step.active {
+        background: linear-gradient(135deg, #ff6b9d, #c56cf0);
+        border-color: #ff6b9d;
+        color: white;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+      }
+
+      .progress-step.completed {
+        background: linear-gradient(135deg, #4caf50, #8bc34a);
+        border-color: #4caf50;
+        color: white;
+      }
+
+      .progress-step.completed::after {
+        content: "✓";
+        position: absolute;
+        font-size: 1.2em;
+      }
+
+      .progress-step.completed span {
+        opacity: 0;
+      }
+
+      .progress-connector {
+        width: 40px;
+        height: 3px;
+        background: rgba(255, 182, 193, 0.3);
+        align-self: center;
+        border-radius: 2px;
+        transition: background 0.4s ease;
+      }
+
+      .progress-connector.active {
+        background: linear-gradient(90deg, #4caf50, #ff6b9d);
       }
 
       .question-container {
         margin: 20px 0;
+        position: relative;
+        animation: slideInQuestion 0.5s ease-out;
+      }
+
+      @keyframes slideInQuestion {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Question card styling */
+      .question-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 240, 245, 0.9)
+        );
+        border-radius: 20px;
+        padding: 20px;
+        margin: 15px 0;
+        border: 2px solid rgba(255, 182, 193, 0.4);
+        box-shadow: 0 5px 20px rgba(255, 107, 157, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .question-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 107, 157, 0.25);
+        border-color: #ff6b9d;
+      }
+
+      .question-card:focus-within {
+        border-color: #c56cf0;
+        box-shadow: 0 0 25px rgba(197, 108, 240, 0.3);
+      }
+
+      .question-icon {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        display: block;
       }
 
       .question-container label {
@@ -2440,11 +2684,12 @@
         color: #555;
         margin-bottom: 10px;
         font-weight: 600;
+        position: relative;
       }
 
       .question-container input {
         width: 100%;
-        padding: 12px 18px;
+        padding: 14px 20px;
         font-size: 1em;
         font-family: "Playfair Display", serif;
         border: 2px solid #ffc0cb;
@@ -2479,6 +2724,15 @@
         margin: 12px 0;
         min-height: 22px;
         font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 71, 87, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .error-message:empty {
+        background: transparent;
+        padding: 0;
       }
 
       .error-message.shake {
@@ -2495,6 +2749,150 @@
         }
         75% {
           transform: translateX(10px);
+        }
+      }
+
+      /* Success message styling */
+      .success-message {
+        color: #4caf50;
+        font-size: 0.95em;
+        margin: 12px 0;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(76, 175, 80, 0.1);
+        font-weight: 600;
+        animation: successPop 0.5s ease;
+      }
+
+      @keyframes successPop {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Security floating decorations */
+      .security-decorations {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .security-sparkle {
+        position: absolute;
+        font-size: 1.2em;
+        animation: securitySparkle 4s ease-in-out infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes securitySparkle {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.3) rotate(180deg);
+          opacity: 0.8;
+        }
+      }
+
+      /* Submit button enhancement */
+      .security-screen .btn-primary {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ff6b9d, #c56cf0, #ff6b9d);
+        background-size: 200% 200%;
+        animation: gradientMove 3s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .security-screen .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: buttonShine 2s infinite;
+      }
+
+      @keyframes buttonShine {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      /* Love hearts border animation */
+      .love-border {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .love-border span {
+        font-size: 0.8em;
+        animation: loveBorderPulse 1.5s ease-in-out infinite;
+      }
+
+      .love-border span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .love-border span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .love-border span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .love-border span:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .love-border span:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+
+      @keyframes loveBorderPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 1;
         }
       }
 
@@ -3130,32 +3528,91 @@
       <!-- Security Question Section (First Screen) -->
       <div class="section active" id="securitySection">
         <div class="security-screen">
-          <p class="security-text">
-            Please answer these questions to continue...
-          </p>
+          <!-- Floating decorations -->
+          <div class="security-decorations">
+            <span
+              class="security-sparkle"
+              style="left: 5%; top: 10%; animation-delay: 0s"
+              >✨</span
+            >
+            <span
+              class="security-sparkle"
+              style="right: 8%; top: 15%; animation-delay: 0.5s"
+              >💫</span
+            >
+            <span
+              class="security-sparkle"
+              style="left: 10%; bottom: 20%; animation-delay: 1s"
+              >💕</span
+            >
+            <span
+              class="security-sparkle"
+              style="right: 5%; bottom: 25%; animation-delay: 1.5s"
+              >⭐</span
+            >
+            <span
+              class="security-sparkle"
+              style="left: 50%; top: 5%; animation-delay: 2s"
+              >💖</span
+            >
+          </div>
+
+          <!-- Enhanced Header -->
+          <div class="security-header">
+            <p class="security-text">
+              ✨ Answer with your heart to unlock our special moments ✨
+            </p>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="question-progress">
+            <div class="progress-step active" id="step1"><span>1</span></div>
+            <div class="progress-connector" id="connector1"></div>
+            <div class="progress-step" id="step2"><span>2</span></div>
+          </div>
 
           <!-- Question 1 -->
           <div class="question-container">
-            <label for="question1">What is our child's name?</label>
-            <input
-              type="text"
-              id="question1"
-              placeholder="Type the name here..."
-              autocomplete="off"
-            />
+            <div class="question-card">
+              <span class="question-icon">👶💕</span>
+              <label for="question1">What is our child's name?</label>
+              <input
+                type="text"
+                id="question1"
+                autocomplete="off"
+                onfocus="updateProgress(1)"
+              />
+            </div>
           </div>
 
           <!-- Question 2 -->
           <div class="question-container">
-            <label for="question2">When is my birthday?</label>
-            <input type="date" id="question2" class="date-input" />
+            <div class="question-card">
+              <span class="question-icon">🎂💗</span>
+              <label for="question2">When is my birthday?</label>
+              <input
+                type="date"
+                id="question2"
+                class="date-input"
+                onfocus="updateProgress(2)"
+              />
+            </div>
           </div>
 
           <div class="error-message" id="errorMessage"></div>
 
           <button type="button" class="btn-primary" onclick="validateAnswers()">
-            ✓ Submit Answers
+            💕 Unlock Our Love Story 💕
           </button>
+
+          <!-- Love border decoration -->
+          <div class="love-border">
+            <span>💗</span>
+            <span>💕</span>
+            <span>💖</span>
+            <span>💕</span>
+            <span>💗</span>
+          </div>
         </div>
       </div>
 
@@ -4139,6 +4596,71 @@
         return date.toLocaleDateString("en-US", options);
       }
 
+      // Update progress indicator for security questions
+      function updateProgress(step) {
+        const step1 = document.getElementById("step1");
+        const step2 = document.getElementById("step2");
+        const connector = document.getElementById("connector1");
+
+        if (step === 1) {
+          step1.classList.add("active");
+          step1.classList.remove("completed");
+          step2.classList.remove("active");
+        } else if (step === 2) {
+          step1.classList.remove("active");
+          step1.classList.add("completed");
+          step2.classList.add("active");
+          connector.classList.add("active");
+        }
+      }
+
+      // Check and update progress based on input values
+      function checkProgress() {
+        const answer1 = document.getElementById("question1").value.trim();
+        const answer2 = document.getElementById("question2").value;
+        const step1 = document.getElementById("step1");
+        const step2 = document.getElementById("step2");
+        const connector = document.getElementById("connector1");
+
+        if (answer1 && answer2) {
+          step1.classList.add("completed");
+          step2.classList.add("completed");
+          connector.classList.add("active");
+        } else if (answer1) {
+          step1.classList.add("completed");
+          step1.classList.remove("active");
+          step2.classList.add("active");
+          connector.classList.add("active");
+        }
+      }
+
+      // Add input event listeners for progress tracking
+      document
+        .getElementById("question1")
+        .addEventListener("input", function () {
+          if (this.value.trim()) {
+            document.getElementById("step1").classList.add("completed");
+            document.getElementById("step1").classList.remove("active");
+            document.getElementById("step2").classList.add("active");
+            document.getElementById("connector1").classList.add("active");
+          } else {
+            document.getElementById("step1").classList.remove("completed");
+            document.getElementById("step1").classList.add("active");
+            document.getElementById("step2").classList.remove("active");
+            document.getElementById("connector1").classList.remove("active");
+          }
+        });
+
+      document
+        .getElementById("question2")
+        .addEventListener("change", function () {
+          if (this.value) {
+            document.getElementById("step2").classList.add("completed");
+          } else {
+            document.getElementById("step2").classList.remove("completed");
+          }
+        });
+
       // Validate both security answers
       function validateAnswers() {
         console.log("validateAnswers called"); // Debug log
@@ -4155,7 +4677,7 @@
 
         // Check if both fields are filled
         if (!answer1 || !answer2) {
-          errorMsg.textContent = "⚠️ Please answer both questions!";
+          errorMsg.textContent = "💕 Please answer both questions with love!";
           errorMsg.classList.add("shake");
           setTimeout(() => errorMsg.classList.remove("shake"), 500);
           return;
@@ -4166,25 +4688,47 @@
         const birthdayCorrect = answer2 === MY_BIRTHDAY;
 
         if (nameCorrect && birthdayCorrect) {
-          // Both answers correct - show welcome screen
-          errorMsg.textContent = "";
-          isAuthenticated = true;
-          showSection("welcome");
+          // Both answers correct - show success animation then welcome screen
+          errorMsg.innerHTML =
+            "💖 Welcome, my love! Opening our special moments... 💖";
+          errorMsg.classList.remove("error-message");
+          errorMsg.classList.add("success-message");
+
+          // Mark both steps as completed
+          document.getElementById("step1").classList.add("completed");
+          document.getElementById("step2").classList.add("completed");
+          document.getElementById("connector1").classList.add("active");
+
+          setTimeout(() => {
+            errorMsg.classList.remove("success-message");
+            errorMsg.classList.add("error-message");
+            errorMsg.textContent = "";
+            isAuthenticated = true;
+            showSection("welcome");
+          }, 1500);
         } else {
           // At least one answer is wrong
-          let errorText = "❌ ";
+          let errorText = "💔 ";
           if (!nameCorrect && !birthdayCorrect) {
-            errorText += "Both answers are incorrect. Try again!";
+            errorText += "Both answers need more love. Try again, sweetheart!";
           } else if (!nameCorrect) {
-            errorText += "The name is incorrect. Try again!";
+            errorText += "The name isn't quite right. Think of our angel!";
           } else {
-            errorText += "The birthday is incorrect. Try again!";
+            errorText += "The birthday isn't correct. Remember my special day!";
           }
 
           errorMsg.textContent = errorText;
           errorMsg.classList.add("shake");
 
           setTimeout(() => errorMsg.classList.remove("shake"), 500);
+
+          // Reset progress
+          document.getElementById("step1").classList.remove("completed");
+          document.getElementById("step1").classList.add("active");
+          document
+            .getElementById("step2")
+            .classList.remove("active", "completed");
+          document.getElementById("connector1").classList.remove("active");
 
           // Clear inputs
           document.getElementById("question1").value = "";

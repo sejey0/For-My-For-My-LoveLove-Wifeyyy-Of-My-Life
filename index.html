@@ -112,9 +112,9 @@
 
       /* Enhanced container for security section */
       .container:has(#securitySection.active) {
-        max-width: 500px;
-        padding: 35px 30px 50px;
-        overflow-y: auto;
+        max-width: 450px;
+        padding: 30px 25px 35px;
+        overflow-y: hidden;
         background: rgba(0, 0, 0, 0.15);
         border: 2px solid rgba(255, 182, 193, 0.3);
         box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3),
@@ -1927,11 +1927,10 @@
 
       /* Transparent container for welcome section */
       .container:has(#welcomeSection.active) {
-        max-width: 480px;
-        padding: 25px 25px 30px;
-        overflow-y: auto;
-        max-height: 90vh;
-        background: rgba(0, 0, 0, 0.2);
+        max-width: 450px;
+        padding: 30px 25px 35px;
+        overflow-y: hidden;
+        background: rgba(0, 0, 0, 0.15);
         border: 2px solid rgba(255, 182, 193, 0.3);
         box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35),
           0 0 30px rgba(255, 107, 157, 0.15);
@@ -2086,13 +2085,13 @@
       .btn-group {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
       }
 
       button {
         font-family: "Playfair Display", serif;
-        font-size: 1.2em;
-        padding: 18px 40px;
+        font-size: 1.1em;
+        padding: 15px 35px;
         border: none;
         border-radius: 50px;
         cursor: pointer;
@@ -2124,8 +2123,8 @@
       .btn-back {
         background: linear-gradient(135deg, #ffecd2, #fcb69f);
         color: #666;
-        margin-top: 30px;
-        font-size: 1em;
+        margin-top: 20px;
+        font-size: 0.95em;
       }
 
       .btn-redroom {
@@ -2706,9 +2705,9 @@
       /* Security Header Enhancement */
       .security-header {
         position: relative;
-        padding: 20px 15px;
-        margin-bottom: 25px;
-        border-radius: 20px;
+        padding: 12px 10px;
+        margin-bottom: 15px;
+        border-radius: 15px;
         background: linear-gradient(
           135deg,
           rgba(255, 107, 157, 0.15),
@@ -2782,9 +2781,9 @@
       }
 
       .security-text {
-        font-size: 1em;
+        font-size: 0.95em;
         color: #666;
-        margin-bottom: 25px;
+        margin-bottom: 0;
         font-style: italic;
         position: relative;
         z-index: 1;
@@ -2821,13 +2820,13 @@
       .question-progress {
         display: flex;
         justify-content: center;
-        gap: 10px;
-        margin-bottom: 25px;
+        gap: 8px;
+        margin-bottom: 15px;
       }
 
       .progress-step {
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         background: rgba(255, 182, 193, 0.3);
         border: 2px solid rgba(255, 107, 157, 0.3);
@@ -2835,6 +2834,7 @@
         align-items: center;
         justify-content: center;
         font-weight: bold;
+        font-size: 0.9em;
         color: #ff6b9d;
         transition: all 0.4s ease;
         position: relative;
@@ -2865,7 +2865,7 @@
       }
 
       .progress-connector {
-        width: 40px;
+        width: 30px;
         height: 3px;
         background: rgba(255, 182, 193, 0.3);
         align-self: center;
@@ -2878,7 +2878,7 @@
       }
 
       .question-container {
-        margin: 20px 0;
+        margin: 12px 0;
         position: relative;
         animation: slideInQuestion 0.5s ease-out;
       }
@@ -2901,9 +2901,9 @@
           rgba(255, 255, 255, 0.9),
           rgba(255, 240, 245, 0.9)
         );
-        border-radius: 20px;
-        padding: 20px;
-        margin: 15px 0;
+        border-radius: 15px;
+        padding: 12px 15px;
+        margin: 8px 0;
         border: 2px solid rgba(255, 182, 193, 0.4);
         box-shadow: 0 5px 20px rgba(255, 107, 157, 0.15);
         transition: all 0.3s ease;
@@ -2921,27 +2921,27 @@
       }
 
       .question-icon {
-        font-size: 1.5em;
-        margin-bottom: 10px;
+        font-size: 1.2em;
+        margin-bottom: 6px;
         display: block;
       }
 
       .question-container label {
         display: block;
-        font-size: 1em;
+        font-size: 0.95em;
         color: #555;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-weight: 600;
         position: relative;
       }
 
       .question-container input {
         width: 100%;
-        padding: 14px 20px;
-        font-size: 1em;
+        padding: 10px 15px;
+        font-size: 0.95em;
         font-family: "Playfair Display", serif;
         border: 2px solid #ffc0cb;
-        border-radius: 15px;
+        border-radius: 12px;
         background: rgba(255, 240, 245, 0.5);
         transition: all 0.3s ease;
         text-align: center;
@@ -2968,12 +2968,12 @@
 
       .error-message {
         color: #ff4757;
-        font-size: 0.95em;
-        margin: 12px 0;
-        min-height: 22px;
+        font-size: 0.9em;
+        margin: 8px 0;
+        min-height: 18px;
         font-weight: 600;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 8px;
+        border-radius: 8px;
         background: rgba(255, 71, 87, 0.1);
         transition: all 0.3s ease;
       }
@@ -3104,15 +3104,15 @@
       /* Love hearts border animation */
       .love-border {
         position: absolute;
-        bottom: -10px;
+        bottom: -5px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 8px;
+        gap: 6px;
       }
 
       .love-border span {
-        font-size: 0.8em;
+        font-size: 0.7em;
         animation: loveBorderPulse 1.5s ease-in-out infinite;
       }
 
@@ -3894,9 +3894,6 @@
           <!-- Welcome Header -->
           <div class="welcome-header">
             <h1 class="welcome-title">💌 Welcome, My Love 💌</h1>
-            <p class="welcome-subtitle">
-              Choose a special letter just for you...
-            </p>
             <div class="welcome-hearts">
               <span>💗</span>
               <span>💕</span>
@@ -3906,26 +3903,14 @@
             </div>
           </div>
 
-          <!-- Button Cards -->
-          <div class="welcome-btn-card">
-            <span class="btn-icon">💍</span>
+          <!-- Buttons -->
+          <div class="btn-group">
             <button class="btn-primary" onclick="showSection('monthsary')">
               💕 Monthsary Letter 💕
             </button>
-            <span class="btn-label">Our love story continues...</span>
-          </div>
-
-          <div class="welcome-btn-card">
-            <span class="btn-icon">🎂</span>
             <button class="btn-secondary" onclick="showSection('birthday')">
               🎉 Birthday Letter 🎉
             </button>
-            <span class="btn-label">A special wish for you...</span>
-          </div>
-
-          <!-- Divider -->
-          <div class="welcome-divider">
-            <span>💋</span>
           </div>
 
           <button class="btn-back" onclick="showSection('security')">
